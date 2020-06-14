@@ -2,6 +2,7 @@
 
 namespace EncompassRest.Loans
 {
+#pragma warning disable CS8618 // Non-nullable field is uninitialized. Consider declaring as nullable.
     /// <summary>
     /// The loan metadata.
     /// </summary>
@@ -36,5 +37,21 @@ namespace EncompassRest.Loans
         /// Name of the loan.
         /// </summary>
         public string LoanName { get; set; }
+
+        /// <summary>
+        /// LoanMetadata CreatedBy
+        /// </summary>
+        public EntityReference CreatedBy { get; set; }
+
+        /// <summary>
+        /// LoanMetadata LoanFileSequenceNumber
+        /// </summary>
+        public int LoanFileSequenceNumber { get; set; }
+
+        /// <summary>
+        /// LoanMetadata Storage
+        /// </summary>
+        public StringEnumValue<LoanStorage> Storage { get; set; }
     }
+#pragma warning restore CS8618 // Non-nullable field is uninitialized. Consider declaring as nullable.
 }

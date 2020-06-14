@@ -33,7 +33,7 @@ namespace EncompassRest.CustomDataObjects
         /// <param name="queryString">The query string to include in the request.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        Task<string> AppendToCustomDataObjectRawAsync(string objectName, string cdo, string queryString = null, CancellationToken cancellationToken = default);
+        Task<string> AppendToCustomDataObjectRawAsync(string objectName, string cdo, string? queryString = null, CancellationToken cancellationToken = default);
         /// <summary>
         /// Creates or replaces a custom data object.
         /// </summary>
@@ -49,14 +49,14 @@ namespace EncompassRest.CustomDataObjects
         /// <param name="queryString">The query string to include in the request.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        Task<string> CreateOrReplaceCustomDataObjectRawAsync(string objectName, string cdo, string queryString = null, CancellationToken cancellationToken = default);
+        Task<string> CreateOrReplaceCustomDataObjectRawAsync(string objectName, string cdo, string? queryString = null, CancellationToken cancellationToken = default);
         /// <summary>
         /// Removes a custom data object.
         /// </summary>
         /// <param name="objectName">Name of the custom data object to delete.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        Task<bool> DeleteCustomDataObjectAsync(string objectName, CancellationToken cancellationToken = default);
+        Task DeleteCustomDataObjectAsync(string objectName, CancellationToken cancellationToken = default);
         /// <summary>
         /// Retrieves the contents of a custom data object. Contents are retrieved as a Base64 string.
         /// </summary>
@@ -71,7 +71,7 @@ namespace EncompassRest.CustomDataObjects
         /// <param name="queryString">The query string to include in the request.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        Task<string> GetCustomDataObjectRawAsync(string objectName, string queryString = null, CancellationToken cancellationToken = default);
+        Task<string> GetCustomDataObjectRawAsync(string objectName, string? queryString = null, CancellationToken cancellationToken = default);
         /// <summary>
         /// Provides a list of names of custom data objects.
         /// </summary>
@@ -84,7 +84,14 @@ namespace EncompassRest.CustomDataObjects
         /// <param name="queryString">The query string to include in the request.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        Task<string> GetCustomDataObjectsRawAsync(string queryString = null, CancellationToken cancellationToken = default);
+        Task<string> GetCustomDataObjectsRawAsync(string? queryString = null, CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Removes a custom data object.
+        /// </summary>
+        /// <param name="objectName">Name of the custom data object to delete.</param>
+        /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
+        /// <returns></returns>
+        Task<bool> TryDeleteCustomDataObjectAsync(string objectName, CancellationToken cancellationToken = default);
     }
 
     /// <summary>
@@ -110,7 +117,7 @@ namespace EncompassRest.CustomDataObjects
         /// <param name="queryString">The query string to include in the request.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        public Task<string> GetCustomDataObjectsRawAsync(string queryString = null, CancellationToken cancellationToken = default) => GetRawAsync(null, queryString, nameof(GetCustomDataObjectsRawAsync), null, cancellationToken);
+        public Task<string> GetCustomDataObjectsRawAsync(string? queryString = null, CancellationToken cancellationToken = default) => GetRawAsync(null, queryString, nameof(GetCustomDataObjectsRawAsync), null, cancellationToken);
 
         /// <summary>
         /// Retrieves the contents of a custom data object. Contents are retrieved as a Base64 string.
@@ -132,7 +139,7 @@ namespace EncompassRest.CustomDataObjects
         /// <param name="queryString">The query string to include in the request.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        public Task<string> GetCustomDataObjectRawAsync(string objectName, string queryString = null, CancellationToken cancellationToken = default)
+        public Task<string> GetCustomDataObjectRawAsync(string objectName, string? queryString = null, CancellationToken cancellationToken = default)
         {
             Preconditions.NotNullOrEmpty(objectName, nameof(objectName));
 
@@ -161,7 +168,7 @@ namespace EncompassRest.CustomDataObjects
         /// <param name="queryString">The query string to include in the request.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        public Task<string> CreateOrReplaceCustomDataObjectRawAsync(string objectName, string cdo, string queryString = null, CancellationToken cancellationToken = default)
+        public Task<string> CreateOrReplaceCustomDataObjectRawAsync(string objectName, string cdo, string? queryString = null, CancellationToken cancellationToken = default)
         {
             Preconditions.NotNullOrEmpty(objectName, nameof(objectName));
             Preconditions.NotNullOrEmpty(cdo, nameof(cdo));
@@ -175,7 +182,20 @@ namespace EncompassRest.CustomDataObjects
         /// <param name="objectName">Name of the custom data object to delete.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        public Task<bool> DeleteCustomDataObjectAsync(string objectName, CancellationToken cancellationToken = default)
+        public Task<bool> TryDeleteCustomDataObjectAsync(string objectName, CancellationToken cancellationToken = default)
+        {
+            Preconditions.NotNullOrEmpty(objectName, nameof(objectName));
+
+            return TryDeleteAsync(objectName, null, cancellationToken);
+        }
+
+        /// <summary>
+        /// Removes a custom data object.
+        /// </summary>
+        /// <param name="objectName">Name of the custom data object to delete.</param>
+        /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
+        /// <returns></returns>
+        public Task DeleteCustomDataObjectAsync(string objectName, CancellationToken cancellationToken = default)
         {
             Preconditions.NotNullOrEmpty(objectName, nameof(objectName));
 
@@ -213,7 +233,7 @@ namespace EncompassRest.CustomDataObjects
         /// <param name="queryString">The query string to include in the request.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        public Task<string> AppendToCustomDataObjectRawAsync(string objectName, string cdo, string queryString = null, CancellationToken cancellationToken = default)
+        public Task<string> AppendToCustomDataObjectRawAsync(string objectName, string cdo, string? queryString = null, CancellationToken cancellationToken = default)
         {
             Preconditions.NotNullOrEmpty(objectName, nameof(objectName));
             Preconditions.NotNullOrEmpty(cdo, nameof(cdo));

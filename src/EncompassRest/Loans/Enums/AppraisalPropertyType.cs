@@ -3,9 +3,9 @@ using System.ComponentModel;
 namespace EncompassRest.Loans.Enums
 {
     /// <summary>
-    /// VaLoanDataAppraisalType
+    /// AppraisalPropertyType
     /// </summary>
-    public enum VaLoanDataAppraisalType
+    public enum AppraisalPropertyType
     {
         /// <summary>
         /// IND-Single Prop-Ind Appraisal

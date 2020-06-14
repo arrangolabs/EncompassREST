@@ -43,7 +43,7 @@ namespace EncompassRest.Loans
         /// <param name="createLoanOptions">The loan creation options.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        Task<string> CreateLoanAsync(Loan loan, CreateLoanOptions createLoanOptions, CancellationToken cancellationToken = default);
+        Task<string> CreateLoanAsync(Loan loan, CreateLoanOptions? createLoanOptions, CancellationToken cancellationToken = default);
         /// <summary>
         /// Creates a new loan in Encompass using loan data imported from a Fannie Mae 3.x loan file and returns the loan id of the loan created.
         /// </summary>
@@ -52,26 +52,7 @@ namespace EncompassRest.Loans
         /// <param name="createLoanOptions">The loan creation options.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        Task<string> CreateLoanFromImportFileAsync(ImportFileType importFileType, Stream importFile, CreateLoanOptions createLoanOptions = null, CancellationToken cancellationToken = default);
-        /// <summary>
-        /// Creates a new loan in Encompass using loan data imported from a Fannie Mae 3.x loan file and returns the loan id of the loan created.
-        /// </summary>
-        /// <param name="importFileType">The format of the file being sent in the request body.</param>
-        /// <param name="importFile">The Fannie Mae loan file to import.</param>
-        /// <param name="createLoanOptions">The loan creation options.</param>
-        /// <param name="loan">Returns a loan object if <paramref name="createLoanOptions"/>.Populate is <c>true</c>.</param>
-        /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
-        /// <returns></returns>
-        Task<string> CreateLoanFromImportFileAsync(ImportFileType importFileType, Stream importFile, CreateLoanOptions createLoanOptions, out Loan loan, CancellationToken cancellationToken = default);
-        /// <summary>
-        /// Creates a new loan in Encompass using loan data imported from a Fannie Mae 3.x loan file and returns the loan id of the loan created.
-        /// </summary>
-        /// <param name="importFileType">The format of the file being sent in the request body.</param>
-        /// <param name="importFile">The Fannie Mae loan file to import.</param>
-        /// <param name="createLoanOptions">The loan creation options.</param>
-        /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
-        /// <returns></returns>
-        Task<string> CreateLoanFromImportFileAsync(ImportFileType importFileType, string importFile, CreateLoanOptions createLoanOptions = null, CancellationToken cancellationToken = default);
+        Task<string> CreateLoanFromImportFileAsync(ImportFileType importFileType, Stream importFile, CreateLoanOptions? createLoanOptions = null, CancellationToken cancellationToken = default);
         /// <summary>
         /// Creates a new loan in Encompass using loan data imported from a Fannie Mae 3.x loan file and returns the loan id of the loan created.
         /// </summary>
@@ -81,7 +62,7 @@ namespace EncompassRest.Loans
         /// <param name="loan">Returns a loan object if <paramref name="createLoanOptions"/>.Populate is <c>true</c>.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        Task<string> CreateLoanFromImportFileAsync(ImportFileType importFileType, string importFile, CreateLoanOptions createLoanOptions, out Loan loan, CancellationToken cancellationToken = default);
+        Task<string> CreateLoanFromImportFileAsync(ImportFileType importFileType, Stream importFile, CreateLoanOptions? createLoanOptions, out Loan? loan, CancellationToken cancellationToken = default);
         /// <summary>
         /// Creates a new loan in Encompass using loan data imported from a Fannie Mae 3.x loan file and returns the loan id of the loan created.
         /// </summary>
@@ -90,26 +71,7 @@ namespace EncompassRest.Loans
         /// <param name="createLoanOptions">The loan creation options.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        Task<string> CreateLoanFromImportFileAsync(string importFileType, Stream importFile, CreateLoanOptions createLoanOptions = null, CancellationToken cancellationToken = default);
-        /// <summary>
-        /// Creates a new loan in Encompass using loan data imported from a Fannie Mae 3.x loan file and returns the loan id of the loan created.
-        /// </summary>
-        /// <param name="importFileType">The format of the file being sent in the request body.</param>
-        /// <param name="importFile">The Fannie Mae loan file to import.</param>
-        /// <param name="createLoanOptions">The loan creation options.</param>
-        /// <param name="loan">Returns a loan object if <paramref name="createLoanOptions"/>.Populate is <c>true</c>.</param>
-        /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
-        /// <returns></returns>
-        Task<string> CreateLoanFromImportFileAsync(string importFileType, Stream importFile, CreateLoanOptions createLoanOptions, out Loan loan, CancellationToken cancellationToken = default);
-        /// <summary>
-        /// Creates a new loan in Encompass using loan data imported from a Fannie Mae 3.x loan file and returns the loan id of the loan created.
-        /// </summary>
-        /// <param name="importFileType">The format of the file being sent in the request body.</param>
-        /// <param name="importFile">The Fannie Mae loan file to import.</param>
-        /// <param name="createLoanOptions">The loan creation options.</param>
-        /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
-        /// <returns></returns>
-        Task<string> CreateLoanFromImportFileAsync(string importFileType, string importFile, CreateLoanOptions createLoanOptions = null, CancellationToken cancellationToken = default);
+        Task<string> CreateLoanFromImportFileAsync(ImportFileType importFileType, string importFile, CreateLoanOptions? createLoanOptions = null, CancellationToken cancellationToken = default);
         /// <summary>
         /// Creates a new loan in Encompass using loan data imported from a Fannie Mae 3.x loan file and returns the loan id of the loan created.
         /// </summary>
@@ -119,7 +81,45 @@ namespace EncompassRest.Loans
         /// <param name="loan">Returns a loan object if <paramref name="createLoanOptions"/>.Populate is <c>true</c>.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        Task<string> CreateLoanFromImportFileAsync(string importFileType, string importFile, CreateLoanOptions createLoanOptions, out Loan loan, CancellationToken cancellationToken = default);
+        Task<string> CreateLoanFromImportFileAsync(ImportFileType importFileType, string importFile, CreateLoanOptions? createLoanOptions, out Loan? loan, CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Creates a new loan in Encompass using loan data imported from a Fannie Mae 3.x loan file and returns the loan id of the loan created.
+        /// </summary>
+        /// <param name="importFileType">The format of the file being sent in the request body.</param>
+        /// <param name="importFile">The Fannie Mae loan file to import.</param>
+        /// <param name="createLoanOptions">The loan creation options.</param>
+        /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
+        /// <returns></returns>
+        Task<string> CreateLoanFromImportFileAsync(string importFileType, Stream importFile, CreateLoanOptions? createLoanOptions = null, CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Creates a new loan in Encompass using loan data imported from a Fannie Mae 3.x loan file and returns the loan id of the loan created.
+        /// </summary>
+        /// <param name="importFileType">The format of the file being sent in the request body.</param>
+        /// <param name="importFile">The Fannie Mae loan file to import.</param>
+        /// <param name="createLoanOptions">The loan creation options.</param>
+        /// <param name="loan">Returns a loan object if <paramref name="createLoanOptions"/>.Populate is <c>true</c>.</param>
+        /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
+        /// <returns></returns>
+        Task<string> CreateLoanFromImportFileAsync(string importFileType, Stream importFile, CreateLoanOptions? createLoanOptions, out Loan? loan, CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Creates a new loan in Encompass using loan data imported from a Fannie Mae 3.x loan file and returns the loan id of the loan created.
+        /// </summary>
+        /// <param name="importFileType">The format of the file being sent in the request body.</param>
+        /// <param name="importFile">The Fannie Mae loan file to import.</param>
+        /// <param name="createLoanOptions">The loan creation options.</param>
+        /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
+        /// <returns></returns>
+        Task<string> CreateLoanFromImportFileAsync(string importFileType, string importFile, CreateLoanOptions? createLoanOptions = null, CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Creates a new loan in Encompass using loan data imported from a Fannie Mae 3.x loan file and returns the loan id of the loan created.
+        /// </summary>
+        /// <param name="importFileType">The format of the file being sent in the request body.</param>
+        /// <param name="importFile">The Fannie Mae loan file to import.</param>
+        /// <param name="createLoanOptions">The loan creation options.</param>
+        /// <param name="loan">Returns a loan object if <paramref name="createLoanOptions"/>.Populate is <c>true</c>.</param>
+        /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
+        /// <returns></returns>
+        Task<string> CreateLoanFromImportFileAsync(string importFileType, string importFile, CreateLoanOptions? createLoanOptions, out Loan? loan, CancellationToken cancellationToken = default);
         /// <summary>
         /// Creates a new loan in Encompass using loan data imported from a Fannie Mae 3.x loan file and returns the response content or else the loan id of the loan created.
         /// </summary>
@@ -128,7 +128,7 @@ namespace EncompassRest.Loans
         /// <param name="queryString">The query string to include in the request.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        Task<string> CreateLoanFromImportFileRawAsync(string importFileType, Stream importFile, string queryString = null, CancellationToken cancellationToken = default);
+        Task<string> CreateLoanFromImportFileRawAsync(string importFileType, Stream importFile, string? queryString = null, CancellationToken cancellationToken = default);
         /// <summary>
         /// Creates a new loan in Encompass using loan data imported from a Fannie Mae 3.x loan file and returns the response content or else the loan id of the loan created.
         /// </summary>
@@ -137,7 +137,7 @@ namespace EncompassRest.Loans
         /// <param name="queryString">The query string to include in the request.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        Task<string> CreateLoanFromImportFileRawAsync(string importFileType, string importFile, string queryString = null, CancellationToken cancellationToken = default);
+        Task<string> CreateLoanFromImportFileRawAsync(string importFileType, string importFile, string? queryString = null, CancellationToken cancellationToken = default);
         /// <summary>
         /// Creates a new loan in Encompass using raw json and returns the loan id of the loan created.
         /// </summary>
@@ -145,14 +145,21 @@ namespace EncompassRest.Loans
         /// <param name="queryString">The query string to include in the request.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        Task<string> CreateLoanRawAsync(string loan, string queryString = null, CancellationToken cancellationToken = default);
+        Task<string> CreateLoanRawAsync(string loan, string? queryString = null, CancellationToken cancellationToken = default);
         /// <summary>
         /// Deletes a specified loan by moving it to the Recycle Bin or Trash folder.
         /// </summary>
         /// <param name="loanId">The unique identifier assigned to the loan.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        Task<bool> DeleteLoanAsync(string loanId, CancellationToken cancellationToken = default);
+        Task DeleteLoanAsync(string loanId, CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Deletes a specified loan by moving it to the Recycle Bin or Trash folder.
+        /// </summary>
+        /// <param name="loanId">The unique identifier assigned to the loan.</param>
+        /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
+        /// <returns></returns>
+        Task<bool> TryDeleteLoanAsync(string loanId, CancellationToken cancellationToken = default);
         /// <summary>
         /// Gets the Loan Apis for the loan with the specified <paramref name="loanId"/>.
         /// </summary>
@@ -179,7 +186,7 @@ namespace EncompassRest.Loans
         /// <param name="entities">The list of loan entities to retrieve from the loan.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        Task<Loan> GetLoanAsync(string loanId, IEnumerable<LoanEntity> entities, CancellationToken cancellationToken = default);
+        Task<Loan> GetLoanAsync(string loanId, IEnumerable<LoanEntity>? entities, CancellationToken cancellationToken = default);
         /// <summary>
         /// Returns the specific entities of a loan.
         /// </summary>
@@ -187,7 +194,7 @@ namespace EncompassRest.Loans
         /// <param name="entities">The list of loan entities to retrieve from the loan.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        Task<Loan> GetLoanAsync(string loanId, IEnumerable<string> entities, CancellationToken cancellationToken = default);
+        Task<Loan> GetLoanAsync(string loanId, IEnumerable<string>? entities, CancellationToken cancellationToken = default);
         /// <summary>
         /// Returns the entire loan or specific entities of a loan as raw json.
         /// </summary>
@@ -195,7 +202,7 @@ namespace EncompassRest.Loans
         /// <param name="queryString">The query string to include in the request.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        Task<string> GetLoanRawAsync(string loanId, string queryString = null, CancellationToken cancellationToken = default);
+        Task<string> GetLoanRawAsync(string loanId, string? queryString = null, CancellationToken cancellationToken = default);
         /// <summary>
         /// Returns the list of loan entities that can be retrieved from a loan.
         /// </summary>
@@ -208,7 +215,7 @@ namespace EncompassRest.Loans
         /// <param name="queryString">The query string to include in the request.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        Task<string> GetSupportedEntitiesRawAsync(string queryString = null, CancellationToken cancellationToken = default);
+        Task<string> GetSupportedEntitiesRawAsync(string? queryString = null, CancellationToken cancellationToken = default);
         /// <summary>
         /// Updates an existing loan by modifying the values of the loan data elements passed.
         /// </summary>
@@ -231,7 +238,7 @@ namespace EncompassRest.Loans
         /// <param name="updateLoanOptions">The loan update options.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        Task UpdateLoanAsync(Loan loan, UpdateLoanOptions updateLoanOptions, CancellationToken cancellationToken = default);
+        Task UpdateLoanAsync(Loan loan, UpdateLoanOptions? updateLoanOptions, CancellationToken cancellationToken = default);
         /// <summary>
         /// Updates an existing loan by modifying the values of the loan data elements passed or by applying a loan template using raw json.
         /// </summary>
@@ -240,7 +247,7 @@ namespace EncompassRest.Loans
         /// <param name="queryString">The query string to include in the request.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        Task<string> UpdateLoanRawAsync(string loanId, string loan, string queryString = null, CancellationToken cancellationToken = default);
+        Task<string> UpdateLoanRawAsync(string loanId, string loan, string? queryString = null, CancellationToken cancellationToken = default);
     }
 
     /// <summary>
@@ -248,7 +255,7 @@ namespace EncompassRest.Loans
     /// </summary>
     public sealed class Loans : ApiObject, ILoans
     {
-        private LoanFieldDescriptors _fieldDescriptors;
+        private LoanFieldDescriptors? _fieldDescriptors;
 
         /// <summary>
         /// The loan field descriptors.
@@ -297,7 +304,7 @@ namespace EncompassRest.Loans
         /// <param name="loanId">The unique identifier assigned to the loan.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        public Task<Loan> GetLoanAsync(string loanId, CancellationToken cancellationToken = default) => GetLoanAsync(loanId, (IEnumerable<string>)null, cancellationToken);
+        public Task<Loan> GetLoanAsync(string loanId, CancellationToken cancellationToken = default) => GetLoanAsync(loanId, (IEnumerable<string>?)null, cancellationToken);
 
         /// <summary>
         /// Returns the specific entities of a loan.
@@ -306,7 +313,7 @@ namespace EncompassRest.Loans
         /// <param name="entities">The list of loan entities to retrieve from the loan.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        public Task<Loan> GetLoanAsync(string loanId, IEnumerable<LoanEntity> entities, CancellationToken cancellationToken = default) => GetLoanAsync(loanId, entities?.Select(e => e.Validate(nameof(entities)).GetValue()), cancellationToken);
+        public Task<Loan> GetLoanAsync(string loanId, IEnumerable<LoanEntity>? entities, CancellationToken cancellationToken = default) => GetLoanAsync(loanId, entities?.Select(e => e.Validate(nameof(entities)).GetValue()!), cancellationToken);
 
         /// <summary>
         /// Returns the specific entities of a loan.
@@ -315,7 +322,7 @@ namespace EncompassRest.Loans
         /// <param name="entities">The list of loan entities to retrieve from the loan.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        public async Task<Loan> GetLoanAsync(string loanId, IEnumerable<string> entities, CancellationToken cancellationToken = default)
+        public async Task<Loan> GetLoanAsync(string loanId, IEnumerable<string>? entities, CancellationToken cancellationToken = default)
         {
             Preconditions.NotNullOrEmpty(loanId, nameof(loanId));
 
@@ -326,7 +333,7 @@ namespace EncompassRest.Loans
             }
 
             var loan = await GetDirtyAsync<Loan>($"loans/{loanId}", queryParameters.ToString(), nameof(GetLoanAsync), loanId, cancellationToken).ConfigureAwait(false);
-            loan.Initialize(Client, loan.EncompassId);
+            loan.Initialize(Client, loan.EncompassId!);
             return loan;
         }
 
@@ -337,7 +344,7 @@ namespace EncompassRest.Loans
         /// <param name="queryString">The query string to include in the request.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        public Task<string> GetLoanRawAsync(string loanId, string queryString = null, CancellationToken cancellationToken = default)
+        public Task<string> GetLoanRawAsync(string loanId, string? queryString = null, CancellationToken cancellationToken = default)
         {
             Preconditions.NotNullOrEmpty(loanId, nameof(loanId));
 
@@ -357,7 +364,7 @@ namespace EncompassRest.Loans
         /// <param name="queryString">The query string to include in the request.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        public Task<string> GetSupportedEntitiesRawAsync(string queryString = null, CancellationToken cancellationToken = default) => GetRawAsync("loans/supportedEntities", queryString, nameof(GetSupportedEntitiesRawAsync), null, cancellationToken);
+        public Task<string> GetSupportedEntitiesRawAsync(string? queryString = null, CancellationToken cancellationToken = default) => GetRawAsync("loans/supportedEntities", queryString, nameof(GetSupportedEntitiesRawAsync), null, cancellationToken);
 
         /// <summary>
         /// Creates a new loan in Encompass and returns the loan id of the loan created.
@@ -383,7 +390,7 @@ namespace EncompassRest.Loans
         /// <param name="createLoanOptions">The loan creation options.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        public async Task<string> CreateLoanAsync(Loan loan, CreateLoanOptions createLoanOptions, CancellationToken cancellationToken = default)
+        public async Task<string> CreateLoanAsync(Loan loan, CreateLoanOptions? createLoanOptions, CancellationToken cancellationToken = default)
         {
             Preconditions.NotNull(loan, nameof(loan));
             Preconditions.NullOrEmpty(loan.EncompassId, $"{nameof(loan)}.{nameof(loan.EncompassId)}");
@@ -400,7 +407,7 @@ namespace EncompassRest.Loans
         /// <param name="queryString">The query string to include in the request.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        public Task<string> CreateLoanRawAsync(string loan, string queryString = null, CancellationToken cancellationToken = default)
+        public Task<string> CreateLoanRawAsync(string loan, string? queryString = null, CancellationToken cancellationToken = default)
         {
             Preconditions.NotNullOrEmpty(loan, nameof(loan));
 
@@ -431,7 +438,7 @@ namespace EncompassRest.Loans
         /// <param name="updateLoanOptions">The loan update options.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        public Task UpdateLoanAsync(Loan loan, UpdateLoanOptions updateLoanOptions, CancellationToken cancellationToken = default)
+        public Task UpdateLoanAsync(Loan loan, UpdateLoanOptions? updateLoanOptions, CancellationToken cancellationToken = default)
         {
             Preconditions.NotNull(loan, nameof(loan));
             Preconditions.NotNullOrEmpty(loan.EncompassId, $"{nameof(loan)}.{nameof(loan.EncompassId)}");
@@ -448,7 +455,7 @@ namespace EncompassRest.Loans
         /// <param name="queryString">The query string to include in the request.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        public Task<string> UpdateLoanRawAsync(string loanId, string loan, string queryString = null, CancellationToken cancellationToken = default)
+        public Task<string> UpdateLoanRawAsync(string loanId, string loan, string? queryString = null, CancellationToken cancellationToken = default)
         {
             Preconditions.NotNullOrEmpty(loanId, nameof(loanId));
             Preconditions.NotNullOrEmpty(loan, nameof(loan));
@@ -462,7 +469,7 @@ namespace EncompassRest.Loans
         /// <param name="loanId">The unique identifier assigned to the loan.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        public Task<bool> DeleteLoanAsync(string loanId, CancellationToken cancellationToken = default)
+        public Task DeleteLoanAsync(string loanId, CancellationToken cancellationToken = default)
         {
             Preconditions.NotNullOrEmpty(loanId, nameof(loanId));
 
@@ -470,6 +477,19 @@ namespace EncompassRest.Loans
         }
 
         /// <summary>
+        /// Deletes a specified loan by moving it to the Recycle Bin or Trash folder.
+        /// </summary>
+        /// <param name="loanId">The unique identifier assigned to the loan.</param>
+        /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
+        /// <returns></returns>
+        public Task<bool> TryDeleteLoanAsync(string loanId, CancellationToken cancellationToken = default)
+        {
+            Preconditions.NotNullOrEmpty(loanId, nameof(loanId));
+
+            return TryDeleteAsync($"loans/{loanId}", null, cancellationToken);
+        }
+
+        /// <summary>
         /// Creates a new loan in Encompass using loan data imported from a Fannie Mae 3.x loan file and returns the loan id of the loan created.
         /// </summary>
         /// <param name="importFileType">The format of the file being sent in the request body.</param>
@@ -477,7 +497,7 @@ namespace EncompassRest.Loans
         /// <param name="createLoanOptions">The loan creation options.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        public Task<string> CreateLoanFromImportFileAsync(ImportFileType importFileType, string importFile, CreateLoanOptions createLoanOptions = null, CancellationToken cancellationToken = default)
+        public Task<string> CreateLoanFromImportFileAsync(ImportFileType importFileType, string importFile, CreateLoanOptions? createLoanOptions = null, CancellationToken cancellationToken = default)
         {
             if (createLoanOptions?.Populate == true)
             {
@@ -496,7 +516,7 @@ namespace EncompassRest.Loans
         /// <param name="loan">Returns a loan object if <paramref name="createLoanOptions"/>.Populate is <c>true</c>.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        public Task<string> CreateLoanFromImportFileAsync(ImportFileType importFileType, string importFile, CreateLoanOptions createLoanOptions, out Loan loan, CancellationToken cancellationToken = default)
+        public Task<string> CreateLoanFromImportFileAsync(ImportFileType importFileType, string importFile, CreateLoanOptions? createLoanOptions, out Loan? loan, CancellationToken cancellationToken = default)
         {
             importFileType.Validate(nameof(importFileType));
             Preconditions.NotNullOrEmpty(importFile, nameof(importFile));
@@ -516,7 +536,7 @@ namespace EncompassRest.Loans
         /// <param name="createLoanOptions">The loan creation options.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        public Task<string> CreateLoanFromImportFileAsync(ImportFileType importFileType, Stream importFile, CreateLoanOptions createLoanOptions = null, CancellationToken cancellationToken = default)
+        public Task<string> CreateLoanFromImportFileAsync(ImportFileType importFileType, Stream importFile, CreateLoanOptions? createLoanOptions = null, CancellationToken cancellationToken = default)
         {
             if (createLoanOptions?.Populate == true)
             {
@@ -535,7 +555,7 @@ namespace EncompassRest.Loans
         /// <param name="loan">Returns a loan object if <paramref name="createLoanOptions"/>.Populate is <c>true</c>.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        public Task<string> CreateLoanFromImportFileAsync(ImportFileType importFileType, Stream importFile, CreateLoanOptions createLoanOptions, out Loan loan, CancellationToken cancellationToken = default)
+        public Task<string> CreateLoanFromImportFileAsync(ImportFileType importFileType, Stream importFile, CreateLoanOptions? createLoanOptions, out Loan? loan, CancellationToken cancellationToken = default)
         {
             importFileType.Validate(nameof(importFileType));
             Preconditions.NotNull(importFile, nameof(importFile));
@@ -555,7 +575,7 @@ namespace EncompassRest.Loans
         /// <param name="createLoanOptions">The loan creation options.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        public Task<string> CreateLoanFromImportFileAsync(string importFileType, string importFile, CreateLoanOptions createLoanOptions = null, CancellationToken cancellationToken = default)
+        public Task<string> CreateLoanFromImportFileAsync(string importFileType, string importFile, CreateLoanOptions? createLoanOptions = null, CancellationToken cancellationToken = default)
         {
             if (createLoanOptions?.Populate == true)
             {
@@ -574,7 +594,7 @@ namespace EncompassRest.Loans
         /// <param name="loan">Returns a loan object if <paramref name="createLoanOptions"/>.Populate is <c>true</c>.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        public Task<string> CreateLoanFromImportFileAsync(string importFileType, string importFile, CreateLoanOptions createLoanOptions, out Loan loan, CancellationToken cancellationToken = default)
+        public Task<string> CreateLoanFromImportFileAsync(string importFileType, string importFile, CreateLoanOptions? createLoanOptions, out Loan? loan, CancellationToken cancellationToken = default)
         {
             Preconditions.NotNullOrEmpty(importFileType, nameof(importFileType));
             Preconditions.NotNullOrEmpty(importFile, nameof(importFile));
@@ -594,7 +614,7 @@ namespace EncompassRest.Loans
         /// <param name="createLoanOptions">The loan creation options.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        public Task<string> CreateLoanFromImportFileAsync(string importFileType, Stream importFile, CreateLoanOptions createLoanOptions = null, CancellationToken cancellationToken = default)
+        public Task<string> CreateLoanFromImportFileAsync(string importFileType, Stream importFile, CreateLoanOptions? createLoanOptions = null, CancellationToken cancellationToken = default)
         {
             if (createLoanOptions?.Populate == true)
             {
@@ -613,7 +633,7 @@ namespace EncompassRest.Loans
         /// <param name="loan">Returns a loan object if <paramref name="createLoanOptions"/>.Populate is <c>true</c>.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        public Task<string> CreateLoanFromImportFileAsync(string importFileType, Stream importFile, CreateLoanOptions createLoanOptions, out Loan loan, CancellationToken cancellationToken = default)
+        public Task<string> CreateLoanFromImportFileAsync(string importFileType, Stream importFile, CreateLoanOptions? createLoanOptions, out Loan? loan, CancellationToken cancellationToken = default)
         {
             Preconditions.NotNullOrEmpty(importFileType, nameof(importFileType));
             Preconditions.NotNull(importFile, nameof(importFile));
@@ -625,7 +645,7 @@ namespace EncompassRest.Loans
             return CreateLoanFromImportFileInternalAsync(content, loan, populate, createLoanOptions, cancellationToken);
         }
 
-        private async Task<string> CreateLoanFromImportFileInternalAsync(HttpContent content, Loan loan, bool populate, CreateLoanOptions createLoanOptions, CancellationToken cancellationToken)
+        private async Task<string> CreateLoanFromImportFileInternalAsync(HttpContent content, Loan? loan, bool populate, CreateLoanOptions? createLoanOptions, CancellationToken cancellationToken)
         {
             var loanId = await PostPopulateDirtyAsync("importers/loan", createLoanOptions?.ToQueryParameters().ToString(), content, nameof(CreateLoanFromImportFileAsync), loan, populate, cancellationToken).ConfigureAwait(false);
             loan?.Initialize(Client, loanId);
@@ -640,7 +660,7 @@ namespace EncompassRest.Loans
         /// <param name="queryString">The query string to include in the request.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        public Task<string> CreateLoanFromImportFileRawAsync(string importFileType, string importFile, string queryString = null, CancellationToken cancellationToken = default)
+        public Task<string> CreateLoanFromImportFileRawAsync(string importFileType, string importFile, string? queryString = null, CancellationToken cancellationToken = default)
         {
             Preconditions.NotNullOrEmpty(importFileType, nameof(importFileType));
             Preconditions.NotNullOrEmpty(importFile, nameof(importFile));
@@ -658,7 +678,7 @@ namespace EncompassRest.Loans
         /// <param name="queryString">The query string to include in the request.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        public Task<string> CreateLoanFromImportFileRawAsync(string importFileType, Stream importFile, string queryString = null, CancellationToken cancellationToken = default)
+        public Task<string> CreateLoanFromImportFileRawAsync(string importFileType, Stream importFile, string? queryString = null, CancellationToken cancellationToken = default)
         {
             Preconditions.NotNullOrEmpty(importFileType, nameof(importFileType));
             Preconditions.NotNull(importFile, nameof(importFile));
@@ -668,6 +688,6 @@ namespace EncompassRest.Loans
             return CreateLoanFromImportFileRawInternalAsync(queryString, content, cancellationToken);
         }
 
-        private Task<string> CreateLoanFromImportFileRawInternalAsync(string queryString, HttpContent content, CancellationToken cancellationToken) => PostAsync("importers/loan", queryString, content, nameof(CreateLoanFromImportFileRawAsync), null, cancellationToken, ReadAsStringElseLocationFunc);
+        private Task<string> CreateLoanFromImportFileRawInternalAsync(string? queryString, HttpContent content, CancellationToken cancellationToken) => PostAsync("importers/loan", queryString, content, nameof(CreateLoanFromImportFileRawAsync), null, cancellationToken, ReadAsStringElseLocationFunc);
     }
 }

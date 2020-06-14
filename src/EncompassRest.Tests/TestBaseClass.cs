@@ -7,7 +7,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using EncompassRest.Utilities;
 using EnumsNET;
-using EnumsNET.NonGeneric;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -154,7 +153,7 @@ namespace EncompassRest.Tests
                             default:
                                 if (testForUndefinedEnumOptions)
                                 {
-                                    TestForUndefinedEnumOptions(path, fails, enumOptionsToIgnore, propertyValue);
+                                    TestForUndefinedEnumOptions(path, fails, enumOptionsToIgnore, propertyValue, property.PropertyType);
                                 }
                                 break;
                         }
@@ -178,18 +177,20 @@ namespace EncompassRest.Tests
                 path.RemoveAt(path.Count - 1);
                 ++i;
             }
+            Assert.AreEqual(0, fails.Count, $@" has the following issues.
+{string.Join(Environment.NewLine, fails)}");
         }
 
-        private static void TestForUndefinedEnumOptions(List<string> path, List<string> fails, Dictionary<Type, HashSet<string>> enumOptionsToIgnore, object itemValue)
+        private static void TestForUndefinedEnumOptions(List<string> path, List<string> fails, Dictionary<Type, HashSet<string>> enumOptionsToIgnore, object itemValue, Type type = null)
         {
-            var typeInfo = itemValue.GetType().GetTypeInfo();
+            var typeInfo = (type ?? itemValue.GetType()).GetTypeInfo();
             if (typeInfo.IsGenericType && !typeInfo.IsGenericTypeDefinition && typeInfo.GetGenericTypeDefinition() == TypeData.OpenStringEnumValueType)
             {
                 var stringValue = itemValue.ToString();
                 if (!string.IsNullOrEmpty(stringValue))
                 {
                     var enumType = typeInfo.GenericTypeArguments[0];
-                    if (!NonGenericEnums.TryParse(enumType, stringValue, true, out _, EnumFormat.EnumMemberValue, EnumFormat.Name) && (enumOptionsToIgnore == null || !enumOptionsToIgnore.TryGetValue(enumType, out var optionsToIgnore) || !optionsToIgnore.Contains(stringValue)))
+                    if (!Enums.TryParse(enumType, stringValue, ignoreCase: true, out _, EnumFormat.EnumMemberValue, EnumFormat.Name) && (enumOptionsToIgnore == null || !enumOptionsToIgnore.TryGetValue(enumType, out var optionsToIgnore) || !optionsToIgnore.Contains(stringValue)))
                     {
                         fails.Add($"{string.Concat(path)} value of '{stringValue}' is not defined in {enumType.Name}");
                     }

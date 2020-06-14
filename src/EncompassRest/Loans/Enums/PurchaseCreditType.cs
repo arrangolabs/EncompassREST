@@ -55,6 +55,16 @@ namespace EncompassRest.Loans.Enums
         /// Trade Equity From Property Swap
         /// </summary>
         [Description("Trade Equity From Property Swap")]
-        TradeEquityFromPropertySwap = 9
+        TradeEquityFromPropertySwap = 9,
+        /// <summary>
+        /// MI Premium Refund
+        /// </summary>
+        [Description("MI Premium Refund")]
+        MIPremiumRefund = 10,
+        /// <summary>
+        /// Lot Equity
+        /// </summary>
+        [Description("Lot Equity")]
+        LotEquity = 11
     }
 }

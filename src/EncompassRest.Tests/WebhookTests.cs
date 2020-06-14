@@ -57,7 +57,7 @@ namespace EncompassRest.Tests
             {
                 await client.Webhook.DeleteSubscriptionAsync(existingSubscription.SubscriptionId);
             }
-            var subscription = new WebhookSubscription(endpoint, WebhookResourceType.Loan, new[] { WebhookResourceEvent.Change });
+            var subscription = new WebhookSubscription(endpoint, WebhookResourceType.Loan, new[] { WebhookResourceEvent.Change, WebhookResourceEvent.Move });
             subscription.Filters.Attributes.Add("/milestoneLogs/*/doneIndicator");
             var subscriptionId = await client.Webhook.CreateSubscriptionAsync(subscription);
             Assert.IsFalse(string.IsNullOrEmpty(subscriptionId));
@@ -89,7 +89,7 @@ namespace EncompassRest.Tests
             }
             var subscriptionId = await client.Webhook.CreateSubscriptionRawAsync($@"{{""endpoint"":""{endpoint}""}}");
             Assert.IsFalse(string.IsNullOrEmpty(subscriptionId));
-            Assert.IsTrue(await client.Webhook.DeleteSubscriptionAsync(subscriptionId));
+            await client.Webhook.DeleteSubscriptionAsync(subscriptionId);
         }
 
         [TestMethod]

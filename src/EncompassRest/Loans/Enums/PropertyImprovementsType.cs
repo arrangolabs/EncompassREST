@@ -3,9 +3,9 @@ using System.ComponentModel;
 namespace EncompassRest.Loans.Enums
 {
     /// <summary>
-    /// RefinanceImprovementsType
+    /// PropertyImprovementsType
     /// </summary>
-    public enum RefinanceImprovementsType
+    public enum PropertyImprovementsType
     {
         /// <summary>
         /// made

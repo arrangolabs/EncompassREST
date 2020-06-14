@@ -1,5 +1,4 @@
 using System;
-using System.ComponentModel;
 using EncompassRest.Utilities;
 
 namespace EncompassRest.Loans
@@ -10,6 +9,12 @@ namespace EncompassRest.Loans
     public sealed class LoanFields
     {
         private readonly Loan _loan;
+
+        /// <summary>
+        /// Allows writing to read-only fields for local purposes such as unit tests. Sending an update request to Encompass with
+        /// a read-only field's value being set is likely to produce an error.
+        /// </summary>
+        public bool AllowWritesToReadOnlyFieldsLocally { get; set; }
 
         /// <summary>
         /// Gets the loan field with the specified <paramref name="fieldId"/>.
@@ -24,7 +29,7 @@ namespace EncompassRest.Loans
 
                 FieldDescriptor descriptor;
                 int? borrowerPairIndex = null;
-                ModelPath modelPath = null;
+                ModelPath? modelPath = null;
                 if (fieldId.Length > 2 && fieldId[fieldId.Length - 2] == '#')
                 {
                     borrowerPairIndex = fieldId[fieldId.Length - 1] - '1';

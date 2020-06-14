@@ -24,14 +24,14 @@ namespace EncompassRest.Contacts
         /// <param name="queryString">The query string to include in the request.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        Task<string> CreateNoteRawAsync(string note, string queryString = null, CancellationToken cancellationToken = default);
+        Task<string> CreateNoteRawAsync(string note, string? queryString = null, CancellationToken cancellationToken = default);
         /// <summary>
         /// Permanently deletes the specified note from the contact.
         /// </summary>
         /// <param name="noteId">Unique identifier of the note assigned to the note when it was created.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        Task<bool> DeleteNoteAsync(string noteId, CancellationToken cancellationToken = default);
+        Task DeleteNoteAsync(string noteId, CancellationToken cancellationToken = default);
         /// <summary>
         /// Retrieves the specified note from the contact.
         /// </summary>
@@ -46,7 +46,7 @@ namespace EncompassRest.Contacts
         /// <param name="queryString">The query string to include in the request.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        Task<string> GetNoteRawAsync(string noteId, string queryString = null, CancellationToken cancellationToken = default);
+        Task<string> GetNoteRawAsync(string noteId, string? queryString = null, CancellationToken cancellationToken = default);
         /// <summary>
         /// Retrieve all notes from the contact.
         /// </summary>
@@ -59,7 +59,14 @@ namespace EncompassRest.Contacts
         /// <param name="queryString">The query string to include in the request.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        Task<string> GetNotesRawAsync(string queryString = null, CancellationToken cancellationToken = default);
+        Task<string> GetNotesRawAsync(string? queryString = null, CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Permanently deletes the specified note from the contact.
+        /// </summary>
+        /// <param name="noteId">Unique identifier of the note assigned to the note when it was created.</param>
+        /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
+        /// <returns></returns>
+        Task<bool> TryDeleteNoteAsync(string noteId, CancellationToken cancellationToken = default);
         /// <summary>
         /// Updates the specified note with the values provided.
         /// </summary>
@@ -75,7 +82,7 @@ namespace EncompassRest.Contacts
         /// <param name="queryString">The query string to include in the request.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        Task<string> UpdateNoteRawAsync(string noteId, string note, string queryString = null, CancellationToken cancellationToken = default);
+        Task<string> UpdateNoteRawAsync(string noteId, string note, string? queryString = null, CancellationToken cancellationToken = default);
     }
 
     /// <summary>
@@ -101,7 +108,7 @@ namespace EncompassRest.Contacts
         /// <param name="queryString">The query string to include in the request.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        public Task<string> GetNotesRawAsync(string queryString = null, CancellationToken cancellationToken = default) => GetRawAsync(null, queryString, nameof(GetNotesRawAsync), null, cancellationToken);
+        public Task<string> GetNotesRawAsync(string? queryString = null, CancellationToken cancellationToken = default) => GetRawAsync(null, queryString, nameof(GetNotesRawAsync), null, cancellationToken);
 
         /// <summary>
         /// Retrieves the specified note from the contact.
@@ -109,13 +116,11 @@ namespace EncompassRest.Contacts
         /// <param name="noteId">Unique identifier of the note assigned to the note when it was created.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        public async Task<ContactNote> GetNoteAsync(string noteId, CancellationToken cancellationToken = default)
+        public Task<ContactNote> GetNoteAsync(string noteId, CancellationToken cancellationToken = default)
         {
             Preconditions.NotNullOrEmpty(noteId, nameof(noteId));
 
-            var note = await GetDirtyAsync<ContactNote>(noteId, null, nameof(GetNoteAsync), noteId, cancellationToken).ConfigureAwait(false);
-            note.NoteId = noteId; //TODO: Remove this when EM corrects bug
-            return note;
+            return GetDirtyAsync<ContactNote>(noteId, null, nameof(GetNoteAsync), noteId, cancellationToken);
         }
 
         /// <summary>
@@ -125,7 +130,7 @@ namespace EncompassRest.Contacts
         /// <param name="queryString">The query string to include in the request.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        public Task<string> GetNoteRawAsync(string noteId, string queryString = null, CancellationToken cancellationToken = default)
+        public Task<string> GetNoteRawAsync(string noteId, string? queryString = null, CancellationToken cancellationToken = default)
         {
             Preconditions.NotNullOrEmpty(noteId, nameof(noteId));
 
@@ -155,7 +160,7 @@ namespace EncompassRest.Contacts
         /// <param name="queryString">The query string to include in the request.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        public Task<string> CreateNoteRawAsync(string note, string queryString = null, CancellationToken cancellationToken = default)
+        public Task<string> CreateNoteRawAsync(string note, string? queryString = null, CancellationToken cancellationToken = default)
         {
             Preconditions.NotNullOrEmpty(note, nameof(note));
 
@@ -187,7 +192,7 @@ namespace EncompassRest.Contacts
         /// <param name="queryString">The query string to include in the request.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        public Task<string> UpdateNoteRawAsync(string noteId, string note, string queryString = null, CancellationToken cancellationToken = default)
+        public Task<string> UpdateNoteRawAsync(string noteId, string note, string? queryString = null, CancellationToken cancellationToken = default)
         {
             Preconditions.NotNullOrEmpty(noteId, nameof(noteId));
             Preconditions.NotNullOrEmpty(note, nameof(note));
@@ -201,7 +206,20 @@ namespace EncompassRest.Contacts
         /// <param name="noteId">Unique identifier of the note assigned to the note when it was created.</param>
         /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
         /// <returns></returns>
-        public Task<bool> DeleteNoteAsync(string noteId, CancellationToken cancellationToken = default)
+        public Task<bool> TryDeleteNoteAsync(string noteId, CancellationToken cancellationToken = default)
+        {
+            Preconditions.NotNullOrEmpty(noteId, nameof(noteId));
+
+            return TryDeleteAsync(noteId, null, cancellationToken);
+        }
+
+        /// <summary>
+        /// Permanently deletes the specified note from the contact.
+        /// </summary>
+        /// <param name="noteId">Unique identifier of the note assigned to the note when it was created.</param>
+        /// <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="CancellationToken.None"/>.</param>
+        /// <returns></returns>
+        public Task DeleteNoteAsync(string noteId, CancellationToken cancellationToken = default)
         {
             Preconditions.NotNullOrEmpty(noteId, nameof(noteId));
 
